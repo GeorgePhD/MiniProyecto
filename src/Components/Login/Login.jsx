@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -24,9 +24,8 @@ function Login() {
             
 
             console.log('Login successful:', response.data);
-            localStorage.setItem('token', response.data.token); // Store token if needed
+            localStorage.setItem('token', response.data.token); 
 
-            // Redirect to another component
             navigate('/receta');
 
         } catch (err) {

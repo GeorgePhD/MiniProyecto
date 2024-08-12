@@ -3,7 +3,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import Receta from './Receta';
 
-// Mock axios to prevent actual API calls during testing
 jest.mock('axios');
 
 describe('Receta Component', () => {
@@ -20,16 +19,12 @@ describe('Receta Component', () => {
         ];
         axios.get.mockResolvedValueOnce({ data: mockData });
 
-        // Render the component
         render(<Receta />);
 
-        // Check if the loading message is displayed
         expect(screen.getByText('Loading...')).toBeInTheDocument();
 
-        // Wait for the component to finish loading and render data
         await waitFor(() => expect(screen.getByText(/Receta #12345678/i)).toBeInTheDocument());
 
-        // Check if the receta data is displayed correctly
         expect(screen.getByText('Receta #12345678')).toBeInTheDocument();
         expect(screen.getByText('Fecha de Emisión: 2024-08-11')).toBeInTheDocument();
         expect(screen.getByText('Doctor: Dr. Juan Pérez')).toBeInTheDocument();
